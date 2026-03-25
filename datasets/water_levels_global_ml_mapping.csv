@@ -1,0 +1,126 @@
+river,river_id,station,station_id
+Mahaweli Ganga (RB 60),39,Agra Oya,0
+Ganga (RB 60),10,Agra Oya,0
+(RB 60),5,Agra Oya,0
+Attanagalu Oya (RB 103),6,Attanagalu Oya,1
+AttanagaluOya (RB103),7,AttanagaluOya,2
+Maha Oya (RB 102),35,Badalgama,3
+Gin Ganga (RB 09),12,Baddegama,4
+Mahaweli Ganga (RB 60),39,Badulu Oya,5
+Ganga (RB 60),10,Badulu Oya,5
+(RB 60),5,Badulu Oya,5
+Maduru Oya (RB 54),32,Badulu Oya,5
+Mahaweli Ganga (RB60),40,BaduluOya,6
+Walawe Ganga (RB 18),51,Bolana,7
+Mahaweli Ganga (RB 60),39,Calidonia,8
+Deduru Oya (RB 99),8,Deduru Oya,9
+DeduruOya (RB99),9,DeduruOya,10
+Kelani Ganga (RB 01),22,Deraniyagala,11
+Attanagalu Oya (RB 103),6,Dunamale,12
+Kalu Ganga (RB 03),18,Ellagawa,13
+Mee Oya (RB 95),43,Galgamuwa,14
+Gin Ganga (RB 09),12,Gin Ganga,15
+Kalu Ganga (RB 03) Gin Ganga (RB 09),19,Gin Ganga,15
+(RB 09),2,Gin Ganga,15
+Gin Ganga,11,Gin Ganga,15
+GinGanga (RB09),13,GinGanga,16
+Maha Oya (RB 102),35,Giriulla,17
+Kelani Ganga (RB 01),22,Glencourse,18
+Kelani Ganga (RB 01),22,Gurugoda Oya,19
+(RB 01),0,Gurugoda Oya,19
+KelaniGanga (RB01),23,GurugodaOya,20
+Kelani Ganga (RB 01),22,Hanwella,21
+Heda Oya (RB 36),15,Heda Oya,22
+HedaOya (RB36),16,HedaOya,23
+Kelani Ganga (RB 01),22,Holombuwa,24
+Yan Oya (RB 67),53,Horowpatana,25
+Kalu Ganga (RB 03),18,Kalu Ganga,26
+Kelani Ganga (RB 01),22,Kalu Ganga,26
+Kalu Ganga (RB 03) Gin Ganga (RB 09),19,Kalu Ganga,26
+(RB 03),1,Kalu Ganga,26
+Kalu Ganga,17,Kalu Ganga,26
+KaluGanga (RB03),20,KaluGanga,27
+Kelani Ganga (RB 01),22,Kehelgamu Oya,28
+(RB 01),0,Kehelgamu Oya,28
+KelaniGanga (RB01),23,KehelgamuOya,29
+Kelani Ganga (RB 01),22,Kelani Ganga,30
+(RB 01),0,Kelani Ganga,30
+Kelani Ganga,21,Kelani Ganga,30
+KelaniGanga (RB01),23,KelaniGanga,31
+Kirindi Oya (RB 22),24,Kirindi Oya,32
+Nilwala Ganga (RB 12),49,Kirindi Oya,32
+KirindiOya (RB22),25,KirindiOya,33
+Kelani Ganga (RB 01),22,Kitulgala,34
+Kalu Ganga (RB 03),18,Kuda Ganga,35
+Kalu Ganga (RB 03) Gin Ganga (RB 09),19,Kuda Ganga,35
+(RB 03),1,Kuda Ganga,35
+Kirindi Oya (RB 22),24,Kuda Oya,36
+KaluGanga (RB03),20,KudaGanga,37
+KirindiOya (RB22),25,KudaOya,38
+Kumbukkan Oya (RB 31),27,Kumbukkan Oya,39
+Menik Ganga (RB 26) Kumbukkan Oya (RB 31),46,Kumbukkan Oya,39
+KumbukkanOya (RB31),28,KumbukkanOya,40
+Maduru Oya (RB 54),32,Maduru Oya,41
+MaduruOya (RB54),33,MaduruOya,42
+Kalu Ganga (RB 03),18,Maguru Ganga,44
+Kalu Ganga (RB 03) Gin Ganga (RB 09),19,Maguru Ganga,44
+KaluGanga (RB03),20,MaguruGanga,45
+Maha Oya (RB 102),35,Maha Oya,46
+(RB 102),3,Maha Oya,46
+Maha Oya,34,Maha Oya,46
+MahaOya (RB102),36,MahaOya,47
+Mahaweli Ganga (RB 60),39,Mahaweli Ganga,48
+Ganga (RB 60),10,Mahaweli Ganga,48
+Mahaweli,37,Mahaweli Ganga,48
+(RB 60),5,Mahaweli Ganga,48
+Maduru Oya (RB 54),32,Mahaweli Ganga,48
+Mahaweli Ganga,38,Mahaweli Ganga,48
+Kumbukkan Oya (RB 31),27,Mahaweli Ganga,48
+Nilwala Ganga (RB 12),49,Mahaweli Ganga,48
+Mahaweli Ganga (RB60),40,MahaweliGanga,49
+Malwathu Oya (RB 90),41,Malwathu Oya,50
+MalwathuOya (RB90),42,MalwathuOya,51
+Mahaweli Ganga (RB 60),39,Manampitiya,52
+Mee Oya (RB 95),43,Mee Oya,53
+MeeOya (RB95),44,MeeOya,54
+Menik Ganga (RB 26) Kumbukkan Oya (RB 31),46,Menik Ganga,55
+Menik Ganga (RB 26),45,Menik Ganga,55
+MenikGanga (RB26),47,MenikGanga,56
+Kalu Ganga (RB 03),18,Millakanda,57
+Maa Oya (RB 69),29,Mukunu Oya,58
+MaaOya(RB 69),31,MukunuOya,59
+Kelani Ganga (RB 01),22,N' Street,60
+Kumbukkan Oya (RB 31),27,Nakkala,61
+Mahaweli Ganga (RB 60),39,Nawalapitiya,62
+Nilwala Ganga (RB 12),49,Nilwala Ganga,63
+(RB 12),4,Nilwala Ganga,63
+Gin Ganga (RB 09),12,Nilwala Ganga,63
+Nilwala Ganga,48,Nilwala Ganga,63
+NilwalaGanga (RB12),50,NilwalaGanga,64
+Kelani Ganga (RB 01),22,Norwood,65
+Nilwala Ganga (RB 12),49,P anadugama,66
+Maduru Oya (RB 54),32,Padiyatalawa,67
+Nilwala Ganga (RB 12),49,Panadugama,68
+Mahaweli Ganga (RB 60),39,Peradeniya,69
+Nilwala Ganga (RB 12),49,Pitabeddara,70
+Kalu Ganga (RB 03),18,Putupaula,71
+Kalu Ganga (RB 03),18,Ratnapura,72
+Deduru Oya (RB 99),8,Ridi bendi Ella (Dam),73
+Kelani Ganga (RB 01),22,Seethawaka Ganga,74
+KelaniGanga (RB01),23,SeethawakaGanga,75
+Heda Oya (RB 36),15,Siyambalanduwa,76
+Mahaweli Ganga (RB 60),39,Taldena,77
+Kirindi Oya (RB 22),24,Tanamalwila,78
+Malwathu Oya (RB 90),41,Tantirimale,79
+Gin Ganga (RB 09),12,Tawalama,80
+Nilwala Ganga (RB 12),49,Urawa,81
+Nilwala Ganga (RB 12),49,Urubokka Ganga,82
+(RB 12),4,Urubokka Ganga,82
+NilwalaGanga (RB12),50,UrubokkaGanga,83
+Walawe Ganga (RB 18),51,Walawe Ganga,84
+WalaweGanga (RB18),52,WalaweGanga,85
+Kirindi Oya (RB 22),24,Wellawaya,86
+Mahaweli Ganga (RB 60),39,Weragantota,87
+Maa Oya (RB 69) Mukunu Oya,30,Yakawewa,88
+Yan Oya (RB 67),53,Yan Oya,89
+YanOya (RB67),54,YanOya,90
