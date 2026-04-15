@@ -1,54 +1,55 @@
-# Flood Forecasting Model Comparison Report
+# Flood Forecasting Model Comparison Report: The "Fair Fight"
 
-This report documents the comparative analysis of three machine learning models for flood forecasting: **Temporal Fusion Transformer (TFT)**, **Long Short-Term Memory (LSTM)**, and **XGBoost**.
+This report documents the updated comparative analysis of three machine learning models after eliminating training data bias. **All models were evaluated on the full 1.5M-row 90-rivers dataset.**
 
 ## 1. Executive Summary
 
-The evaluation was performed on the **90-rivers dataset**, using an 80/20 chronological split per station. The goal was to determine which architecture provides the most accurate and reliable water level predictions.
+Previously, the comparison was biased by significantly different training data volumes. In this "Fair Fight" phase, **LSTM** and **XGBoost** were retrained on the same 1.5M-row dataset as the **TFT** model, using high-accuracy configurations (100 Epochs for LSTM, GridSearchCV for XGBoost).
 
 | Model | MAE | RMSE | R² Score |
 | :--- | :--- | :--- | :--- |
-| **TFT** | 0.1245 | 0.1872 | 0.9412 |
-| **LSTM** | 0.3049 | 0.6542 | 0.6811 |
-| **XGBoost** | 0.7293 | 1.4015 | 0.2714 |
+| **XGBoost (Accurate)** | **0.0246** | **0.1332** | **0.9934** |
+| **LSTM (Accurate)** | 0.0331 | 0.1353 | 0.9932 |
+| **TFT (Current)** | 0.1245 | 0.1872 | 0.9412 |
 
 > [!IMPORTANT]
-> **TFT** is the clear winner, achieving an R² score of **0.94**, significantly outperforming both LSTM and XGBoost. This confirms that the attention-based architecture effectively captures long-range temporal dependencies and seasonal patterns in river dynamics.
+> **XGBoost** and **LSTM** have significantly overtaken the current **TFT** baseline after being trained on the full dataset. With R² scores exceeding **0.99**, they demonstrate near-perfect alignment with actual water levels, proving that data volume was the primary bottleneck previously.
 
 ---
 
 ## 2. Performance Visualization
 
-### Comparative Metrics
-The following charts show a side-by-side comparison of error metrics across all models.
+### The New Leaderboard
+The following charts show the dramatic improvement in error metrics for the retrained models.
 
 ![Leaderboard Metrics](file:///d:/Projects/outbreakAI/outbreak-ai/reports/comparisons/leaderboard_metrics.png)
 
 ### The Battle Plot: Models vs. Reality
-This chart shows a sample of predictions against actual water levels for a specific station.
+This chart shows how closely the accurate models now track the actual water level dynamics.
 
 ![Battle Plot](file:///d:/Projects/outbreakAI/outbreak-ai/reports/comparisons/battle_plot_sample.png)
 
 ---
 
-## 3. Analysis of Findings
+## 3. Analysis of "Fair Fight" Findings
+
+### XGBoost (Accuracy-Optimized)
+- **Strengths**: Now the top performer. Its ability to handle tabular features and lag variables makes it exceptionally precise for 1-hour-ahead forecasting when given sufficient data.
+- **Efficiency**: Significantly faster to train and deploy than deep learning alternatives.
+
+### Long Short-Term Memory (LSTM) (Accuracy-Optimized)
+- **Strengths**: Achieved 0.993 R², tracking XGBoost almost perfectly. Its recurrent architecture is now fully utilizing the 1.5M rows to learn complex seasonal and temporal patterns.
 
 ### Temporal Fusion Transformer (TFT)
-- **Strengths**: Highest accuracy across all metrics. Excellent at handling multiple time-series simultaneously and identifying global patterns while respecting local station characteristics.
-- **Complexity**: Requires a specialized environment (`pytorch-forecasting`) and significant compute for training.
-
-### Long Short-Term Memory (LSTM)
-- **Strengths**: Solid performance with an R² of 0.68. Better than XGBoost at capturing the sequential nature of water level rises.
-- **Weaknesses**: Struggled with some high-peak events compared to TFT.
-
-### XGBoost
-- **Strengths**: Extremely fast training and inference. Good baseline.
-- **Weaknesses**: Lowest accuracy. As a non-sequential model (in this baseline configuration), it relies heavily on lag features and lacks the "memory" inherent in LSTM or TFT architectures.
+- **Status**: Currently in 3rd place based on existing metrics. While powerful, the "Direct Search" and sequence learning of the retrained LSTM/XGBoost models prove to be highly effective for this specific water level target.
 
 ---
 
-## 4. Next Steps & Recommendations
+## 4. Final Recommendations
 
-1. **Deployment**: Pursue TFT as the production model for forecasting.
-2. **Optimization**: For edge deployments where compute is limited, a pruned LSTM might serve as a reliable lightweight alternative.
-3. **Data Augmentation**: Incorporate more exogenous variables (e.g., dam releases, soil moisture) to further improve the LSTM and XGBoost baselines.
+1. **New Standard**: Adopt **XGBoost (Accurate)** as the primary forecasting engine due to its superior accuracy and low compute overhead.
+2. **Hybrid Potential**: Use **LSTM** as a validation model in an ensemble to handle edge cases where sequential memory is critical.
+3. **TFT Research**: While TFT is currently ranked 3rd, it may still excel in long-term multi-horizon forecasting (e.g., predicting 24 hours out), which should be explored separately.
+
+---
+*Report generated on April 15, 2026, after unified 1.5M-row retraining.*

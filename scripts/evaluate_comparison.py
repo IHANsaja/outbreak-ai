@@ -22,8 +22,8 @@ except ImportError:
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 DATA_PATH = r'd:\Projects\outbreakAI\outbreak-ai\datasets\water_levels_90_rivers_ready.csv'
 TFT_MODEL_PATH = r'd:\Projects\outbreakAI\outbreak-ai\models\tft_flood_model_final.ckpt'
-LSTM_MODEL_PATH = r'd:\Projects\outbreakAI\outbreak-ai\models\flood_lstm_model_final.pth'
-XGB_MODEL_PATH = r'd:\Projects\outbreakAI\outbreak-ai\models\flood_xgboost_model_final.pkl'
+LSTM_MODEL_PATH = r'd:\Projects\outbreakAI\outbreak-ai\models\flood_lstm_retrained_accurate.pth'
+XGB_MODEL_PATH = r'd:\Projects\outbreakAI\outbreak-ai\models\flood_xgboost_retrained_accurate.pkl'
 OUTPUT_DIR = r'd:\Projects\outbreakAI\outbreak-ai\reports\comparisons'
 
 FEATURES = ['station_id', 'river_id', 'hour', 'month', 'alert_level', 
@@ -131,8 +131,16 @@ def main():
             lstm_model.load_state_dict(torch.load(LSTM_MODEL_PATH, map_location=DEVICE))
             lstm_model.eval()
 
-            with torch.no_grad():
-                preds_lstm_scaled = lstm_model(X_seq_t).cpu().numpy()
+            # Batched Inference to avoid OOM
+            BATCH_SIZE = 4096
+            preds_lstm_scaled_list = []
+            for i in range(0, len(X_seq_t), BATCH_SIZE):
+                batch_x = X_seq_t[i:i + BATCH_SIZE]
+                with torch.no_grad():
+                    batch_out = lstm_model(batch_x).cpu().numpy()
+                    preds_lstm_scaled_list.append(batch_out)
+            
+            preds_lstm_scaled = np.concatenate(preds_lstm_scaled_list, axis=0)
             
             preds_lstm = scaler_y.inverse_transform(preds_lstm_scaled).flatten()
             y_true_lstm = scaler_y.inverse_transform(y_seq).flatten()
