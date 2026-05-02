@@ -10,7 +10,7 @@ Previously, the comparison was biased by significantly different training data v
 | :--- | :--- | :--- | :--- |
 | **XGBoost (Accurate)** | **0.0246** | **0.1332** | **0.9934** |
 | **LSTM (Accurate)** | 0.0331 | 0.1353 | 0.9932 |
-| **TFT (Current)** | 0.1245 | 0.1872 | 0.9412 |
+| **TFT (Current)** | 0.3182 | 0.5548 | 0.8823 |
 
 > [!IMPORTANT]
 > **XGBoost** and **LSTM** have significantly overtaken the current **TFT** baseline after being trained on the full dataset. With R² scores exceeding **0.99**, they demonstrate near-perfect alignment with actual water levels, proving that data volume was the primary bottleneck previously.
