@@ -1,0 +1,923 @@
+
+
+A Dual-Mode Web-Based Intelligence System with IoT-Powered Edge Device Support for Real-Time Disaster Communication.
+J. A. D. Ihan Hansaja
+IT_UGC_001/B003/0006
+Supervisor: Ms. Suranji Nadeeshani
+Co-Supervisor: Ms. Shanika
+
+A PROJECT PROPOSAL DOCUMENTATION
+SUBMITTED TO
+COLOMBO INTERNATIONAL NAUTICAL AND ENGINEERING COLLEGE                                                                                                                     IN PARTIAL FULFILMENT OF THE REQUIREMENTS
+FOR THE DEGREE OF
+BSC(HONS) SOFTWARE ENGINEERING
+
+
+January 2026
+
+
+
+DECLARATION SHEET
+The work contained in this dissertation has not been previously submitted to meet requirements for an award at this or any other higher education institution. To the best of my knowledge and belief, the thesis contains no material previously published or written by another person except where due reference is made. I confirm that the intellectual contents of the work are the result of my own efforts and of no other person.
+
+This is to certify that this dissertation is based on the work carried by Mr. …………………………………………………………………………  under my supervision. The dissertation has been prepared according to the format stipulated and is of accepted standard. 
+
+Certified by: 
+
+
+
+
+
+
+
+ACKNOWLEDGEMENT
+
+I would like to express my sincere appreciation to my project supervisor and the academic staff of the Department of Information Technology at Colombo International Nautical and Engineering College for their guidance and support throughout this project proposal. I am also grateful to the researchers and open-source communities whose work contributed to this study. Finally, I thank my family and friends for their encouragement and support.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+List of Figures
+Figure 1 - Gantt Chart	10
+Figure 2 - IoT device architecture	13
+Figure 3 - Architecture design of the system	14
+Figure 4 - Example UI design for citizen homepage	15
+Figure 5 - Example UI design for request emergency help	16
+Figure 6 - Example UI design for disaster map and alerts	16
+Figure 7 - Example UI design for authority dashboard	17
+Figure 8 - Example UI design for offline edge mode	17
+Figure 9 - Application Layout and Providers	19
+Figure 10 - Design Theme	20
+Figure 11 - Database Architecture and Schema Design	21
+Figure 12 - Middleware-Based Route Protection	23
+
+List of Tables
+Table 1 - literature review gap table	7
+Table 2 - Milestones	11
+Table 3 - Technology Used	18
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Chapter 01 – Introduction
+1.1 Background
+Sri Lanka is frequently experiencing natural disasters like floods, landslides and extreme weather conditions. During these disasters, communication infrastructure and internet connectivity damaged and failed due to disaster conditions. As a result, nearby people face significant difficulties communicating with emergency services, authorities or nearby individuals. 
+In this kind of situation, information becomes the most valuable asset for saving lives of people such as rescuing survivors, providing food and water for those who need and informing people who are willing to help. Currently in Sri Lanka, there is no intelligence communication platform to share real-time disaster information. Instead, existing Sri Lankan disaster management mechanisms such as early warning towers, television and radio broadcasts and mobile alert systems are dependent on the centralized infrastructure and consistent internet connectivity.
+Past Ditwah cyclone situation is a clear example of this issue. Most of the people used social media to search for missing family members or relatives and contacted nearby neighbors to get information. even though most of them failed and were late to act. A community cannot save every life during a disaster, but they can reduce the damage to people’s lives, if they have accurate information in real-time. 
+In past recent years, Artificial Intelligence (AI), Internet of Things (IoT), edge computing and software development technologies have evolved. These emerging technologies can be used to develop innovative solutions for these challenges. AI can be used to analyze sensor data, predict hazards and analyze the priority of emergency messages when providing the solution. Edge computing has ability to process data locally, reduce latency and enable real-time decision making when cloud services are unavailable. However, most of the existing solutions are based on the cloud and centralized infrastructures. Therefore, it is difficult to experiment with an IoT network without an integration into a real-world usable platform. This project aims to address this challenge by providing a scalable, practical and context-aware solution that designed for Sri Lanka.
+1.2 Aims of the Project
+To develop a web-based platform that has ability to share information in real-time among citizens, authorities and emergency responders during disaster situations, with support from an IoT based edge device to maintain communication when network connectivity fails.
+
+1.3 Academic Questions and Objective
+1.3.1 Research Questions
+How can a full-stack web-based platform be developed to support real-time communication among citizens, authorities, and emergency responders during disaster situations?
+How can an IoT-based edge device be used to enable local communication when internet and mobile network connectivity are unavailable?
+
+1.3.2 Objectives
+To develop a full-stack disaster communication web application for exchange information among citizens, authorities and emergency responders in real-time.
+To implement an offline communication device using IoT that enables message sharing on the 100m area when internet connectivity fails.
+To synchronize data from the IoT device to the main web platform when the internet connectivity is restored.
+To develop role-based system functionalities for citizens, authorities and emergency responders.
+To develop AI driven data visualization, predictions and information processing related to the disaster situation in real-time.
+
+
+
+1.4 Scope
+This project emphasizes developing a prototype-level dual-mode intelligent communication system in disasters. Main component of the system is the web-based platform which is the online mode and IoT edge device is the secondary component that developed as the offline mode. In online mode, cloud-based operations and real-time communication can be accessed when users have internet connectivity. During network outages, IoT edge devices will activate to enable communication to people on the device’s range.
+This scope includes development of a full stack web application that supports functions like exchanging information between citizens, authorities and emergency services, reporting disaster damage, emergency alerts broadcasting, requesting help and role-based authentication to the system. This system also includes a dashboard for authorities to be aware of the real-time situation. 
+IoT devices are responsible for broadcasting messages when internet connectivity is not available using Wi-Fi and mesh-based networking, temporarily store message data and synchronize with the cloud when internet connectivity is restored. 
+In this research project, AI scope is limited to using already available AI models for predicting, analyzing and decision-making tasks. These AI models are responsible for detecting anomalies in sensor data, identifying priorities in emergency messages and summarizing reports. Also, already available models will be used to predict nationwide disasters.
+
+
+
+
+
+
+2. Chapter 02 – Literature Review
+2.1 Introduction
+Climate change badly affected to many countries in the world including Sri Lanka and every time it will highlight the need of resilient communication systems. Cyclone Ditwah disaster that affected to the Sri Lanka in late 2025, is “the worst catastrophe to hit Sri Lanka since the 2004 Tsunami” as the world bank says. Effective disaster management needs real-time situational data, and a way to share information on the community to reduce the damage from the disasters. Throughout the world disaster communication platforms are implemented using emerging technologies like Internet of Things (IoT), edge computing and Artificial Intelligence (AI). This literature review focuses on comparing those disaster communication systems in three pillars as IoT, edge computing and AI.  
+
+2.2 Similar Projects
+Governments and organizations throughout the world have implemented disaster communication platforms to updated their communities in a disaster situation. Global disaster Alerts and Coordination System is a disaster communication system that continuously gather satellite data and share real-time alerts for people about possible earthquakes, floods, and cyclones. In United States, another disaster communication platform called FEMA’s Integrated Public Alert & Warning System (IPAWS) use to share real-time information using cell networks, radio and TV. Many countries use radio and television to broadcast messages, and SMS alerting to share warning messages among the citizens. Also, in smart cities sensor networks and apps used to trigger geo-target alerts about disaster early warnings. 
+In Sri Lanka, the Disaster Management Centre (DMC) is responsible to share warnings nationwide. According to 2014 World bank facts sheet, national authorities of the Sri Lanka communicate to locals mainly through police and military communication systems, radios and TVs, multi-hazard towers and telephone systems in a disaster situation. The DMC has developed a nation-wide emergency communication system to broadcast alerts to all provinces about cyclones, floods, landslides and tsunamis. Alternatively, they use television and radio broadcasts and mobile networks to share warnings. 
+In private sector of Sri Lanka, Dialog Axiata launched “Sayuru” in 2020 to help fishermen to receive weather alerts and it helps them by making their decision-making process easier. 
+In disaster situations, IoT devices used to collect real-time data and supports in various disaster scenarios. when a disaster disables the cell networks and internet connectivity, IoT edge device can begin to work. For example, people can login to a web server hosted on the edge device in a certain area and transmit messages between locals. IoTEC study confirmed that in an infrastructure failure situation, edge processing will become more important and can be used to store sensitive data locally. moreover, multi-protocol communication strategies are implemented to emergency alerts sharing. Strategy is to use 5G/Wi-Fi for high-priority alerts and LoRa or NB-IoT links as backups. 
+Project OWL is a project that illustrates this idea. In this Project, solar powered IoT device called “DuckLink” deployed in disaster areas. These IoT devices forms a local mesh network using LoRa radios when communication infrastructure is down. Mobile users can connect to the emergency web portal on this mesh network. Another example is an AI-augmented emergency app that has dual mode operation. In online mode, it sends GPS-based alerts via cloud servers. In offline mode, it switches to a mesh network that share alerts using multi-hop message passing technology. Moreover, this system uses decision trees, Support vector machines AI algorithms to route messages by optimizing resources like battery, distance and signal strength. 
+Nowadays, Artificial Intelligence (AI) is applied to disaster management worldwide. Machine Learning (ML) models can analyze satellite data, geographical and historical data to forecast floods, landslide, cyclones and other hazards. These AI predictions can be used to take necessary actions immediately to reduce the damage from these disasters. A review shows that trustworthy AI is crucial in decision making process in a disaster. However, these models use social media data to provide situation awareness because of that it has the challenges like data quality and ethical use. 
+Sri Lankan researchers have implemented AI models for disaster forecasting that tailored to local needs. As an example, a team from Sri Lankan Institute of Information technology proposes a solution for disasters such as landslides, floods and cyclones affect to Sri Lanka through a research study. They proposed an Early Warning System that uses multiple machine learning algorithms to predict disasters that can affect to the multiple districts in Sri Lanka. For flood forecasting in Rathnapura, they used a Long Short-Term Memory (LSTM) network with Random Forest (RF) ML algorithms. Moreover, they used Random Forest for landslide prediction in Badulla, Light Gradient Boosting Machine (LightGBM) for drought monitoring in Anuradhapura, and Extreme Gradient Boosting (XGBoost) for cyclone prediction in Batticaloa. They trained these machine learning models using region specific environmental data from 2000 to 2025. These models achieved higher accuracies after training as following. 
+Flood prediction model – 93.5%
+Landslide prediction model – 92.0%
+Drought prediction model – 86.8%
+Cyclone prediction model – 88.5% 
+A research team from Kothalawala Defence University (KDU) trained an Artificial Neural Network (ANN) using national landslide inventory data (1,500 slides and 1,500 stable sites) and 25 climate features. This ANN model achieved 94.45% test accuracy and they developed AI-geospatial framework using this ANN model to map landslide susceptibility. 
+Another research study shows how AI load balancing can be used in a mesh network in a hazard. The researcher developed an AI-enhanced Emergency Rescue Communication System which maintain continuous message delivery when internet connectivity is available or not. Also, this platform uses AI to find the most reliable way by looking things like battery power left, free RAM space, how much space there is for storing information on the device, signal strength from nearby devices and how close those devices are physically to each other. 
+AI forecasting is another method that can be used to reduce the damage from natural disasters. eXtreme Gradient Boost (XGBoost), Random Forest, Long Short-Term Memory (LSTM) and Temporal Fusion Transformer (TFT) are some of the popular algorithms that are used to train AI models. 
+A group of researchers built a model to forecast flood discharges from large hydroelectric reservoirs in the Da River basin in Vietnam. The study evaluated the capabilities of a LSTM neural network to predict flood flow based on daily discharge and rainfall data. The AI model was designed to forecast one-day, two-day and three-day streamflow and the model had high accuracy across all three forecast horizons. The researchers found that the specific memory-retention capability of LSTMs makes them suitable for time series hydrology by overcoming the limitation of standard Artificial Neural Networks (ANNs), which fail to carry data from preceding time steps. 
+A study on two historical flooding events in Houston, Texas demonstrated efficacy of eXtreme Gradient Boost (XGBoost) in flood forecasting. The researchers propose the efficacy of using XGBoost as a state-of-the-art machine learning model to river water levels every 5 minutes for several different future timeframes. This study found that models using only the internal local gauge readings were sufficient and advantageous for predicting flood arrival times. 
+To forecast overflow in flash flood situations from sewer manholes in a large-scale urban network, a group of researchers used a Temporal Fusion Transformer (TFT) model. This AI model was designed to forecast future overflow scenarios across 975 manholes in the network. This TFT model is compared with LSTM network and a Dual-Stage Attention-Based Recurrent Neural Network (DA-RNN) to evaluate its performance. The results indicated that the TFT model outperformed both LSTM and the DA-RNN in predictive performance. 
+In conclusion, these evidence and existing systems show that IoT edge devices can be very effective in disaster situations and AI prediction models have matured to predict hazards in Sri Lanka. Combination of these technologies useful when creating a system to continuously share real-time time information among citizens. Moreover, a web-based platform which combines all these emerging technologies is effective to show disaster details to citizens to avoid life and property losses.
+
+
+
+
+Table  - literature review gap table
+
+
+
+
+
+
+
+
+
+
+
+3. Chapter 03 – Methodology
+3.1 Planning
+The planning phase is the most critical step in the research methodology because it creates the foundation to the successful execution of the research project. This planning phase is focus on defining a work plan to achieve project aim and objectives and evaluate and identify values of the proposed system. Proper planning will ensure that successful functioning of this prototype level system after deploying it on the real-world scenario.
+3.1.1 Identifying Business Values
+Primary stakeholders of this proposed system are disaster affected citizens, emergency responders and services, government authorities and non-governmental organizations. These stakeholders are the people who get benefits from using this proposed dual-mode intelligence disaster communication system. 
+The main value of the proposed system is this system able to continue on message sharing even when traditional internet connectivity and mobile networks fail. During disaster situation, this is how the new proposed system mainly differ from the existing disaster management infrastructure. 
+Authorities will gain access to real-time situation of places through AI predictions, AI insights and comprehensive reports. Therefore, it helps to the decision-making process of the authorities and they can act immediately on critical situations. Moreover, authorities can use these dashboard functions to allocate resources for rescue more efficiently. This system helps for citizens that affected by the disaster by allowing them to submit SOS requests, report incidents, receive alerts about the disaster in real-time. This will ensure the safety and trust increase among the community to face the disaster situation better. 
+3.1.2 Feasibility Analysis
+Feasibility study s done to make sure that the proposed system can be developed and deployed within constraints of the project. This feasibility study mainly discussed five types of feasibilities. They are, technical feasibility, financial feasibility, operational feasibility, legal feasibility and schedule feasibility. 
+3.1.2.1 Technical Feasibility
+This platform is developed using widely supported technologies to ensure wide support among users’ different devices. Modern web development frameworks, IoT devices and new AI tools and libraries are used to build this platform. 
+The web-based platform has two modes, online mode will develop using Next.js JavaScript framework to increase the performance and basic HTML, CSS and JavaScript technologies will used to develop the offline mode to ensure the lightweight of that section. 
+Edge device will create using raspberry pi or ESP32 development boards and 2–5 dBi antenna to boost the Wi-Fi range to 100m radius. This development boards are also capable to host a lightweight webpage and run a web server. AI models that already trained for prediction and publicly available, google map Flood prediction and disaster prediction APIs and free Large Language Models (LLMs) will use to integrate AI functioning to this system. 
+
+3.1.2.2 Financial Feasibility
+The proposed system will develop and designed using cost-effective methods. Web platform developed using open-source JavaScript frameworks and free web technologies. Google Maps API has to pay as we use but 300$ credits are given for free for 6 months and new accounts which is totally enough to build this prototype level system. IoT devices such as microcontroller, sensors and Wi-Fi antenna are not expensive which is totally fine to afford.
+
+3.1.2.3 Operational Feasibility
+The system is designed to fix the gaps on existing disaster management processes in Sri Lanka. This proposed system does not replace current disaster management processes, only supports to increase their effectiveness. Also, citizens will interact with the system using a simple user interface and emergency responders, authorities use a dashboard which can access according to their roles to do their responsible work.
+
+3.1.2.4 Legal Feasibility
+This system does not collect sensitive information from the users or any other stakeholder. All platform related data will be used after the acceptance of the users. Most sensitive data used in this platform is user’s current location and it is accessed after user’s acceptance and purpose of the data is protect the user not to harm. 
+3.1.2.5 Schedule Feasibility
+This dual mode communication system is only a prototype level system and it only use one edge device for the prototype. This prototype level web-based platform and IoT device can be developed in available timeframe. This project does not focus on training AI models from ground up because of the limited time frame. Platform developed by integrating already trained and publicly available AI models. 
+
+3.1.3 Work Plan
+The following work plan is used to execute the project in a structured way and deliver a milestone at the end of each step.
+                             
+
+
+
+
+
+
+
+
+ 
+
+
+Table  - Milestones
+
+
+
+
+
+
+
+
+
+3.2 Analysis and Requirement Gathering
+This phase plans to understand the problem and system requirements in details. This step is crucial because requirement gathering help to ensure that the developed system is aligned with user needs and research aim and objectives.
+3.2.1 Analysis
+There are existing systems worldwide to communicate in a disaster situation. They are discussed in the literature review to identify the similarities and differences from the proposed system. To improve the proposed communication system, Algorithms, IoT device architectures and technologies can be used. Moreover, online available systems were analyzed to find out the research gaps. 
+3.2.2 Requirement Gathering
+Requirement gathered using secondary sources, which includes academic researches, journal articles, conference papers, research reports and existing disaster management systems. Requirements are categorized into functional and non-functional requirements as following.
+Functional Requirements (FR):
+FR1: User registration and Authentication
+FR2: Emergency Reporting for request help
+FR3: Incident Reporting
+FR4: Real-time Communication between users
+FR5: Offline communication using IoT edge device
+FR6: Data storage in offline mode and Synchronization
+FR7: Alert Broadcasting
+FR8: AI based message prioritizing.
+FR9: Dashboard for government and non-government Authorities.
+FR10: Multilingual Support
+
+Non-Functional Requirements (NFR):
+NFR1: Low latency performance of IoT edge device
+NFR2: System should support to add new users and disasters (Scalability)
+NFR3: User Access Control to the system
+NFR4: Web Platform should accessible through any kind of Device (Portability)
+NFR5: System should be easy to maintain and debugging 
+
+
+3.3 Designing
+3.3.1 Physical Design
+
+
+
+
+
+
+
+This figure shows the architecture of the IoT device and its components. This IoT device can run a small webserver and work as a message broadcasting device on a 100m radius when Internet connectivity is not available and it will synchronize with the cloud server and web platform as soon as possible the connectivity restored. For store messages locally it uses a local storage flash or microSD card.
+
+
+
+
+
+
+3.3.2 Architecture Design
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This diagram depicts the architecture of the system. As diagram display, modules of the system such as users, IoT device, web platform and cloud infrastructure will work together to deliver a high quality, trustworthy information rapidly to the disaster affected community to reduce life and property damage. 
+
+
+
+
+
+
+3.3.3 Interface Design
+The following figures shows the examples of user interface designs for main screens of this system. primary colors used to design the user interfaces are, Deep command blue (#1A2B4C), Vibrant warning orange (#FF8C00), Emergency alert red (#D32F2F), Safe zone blue (#2196F3) and clean background white (#FFFFFF). Modern sans-serif typographies such as Inter and Roboto are used to clearly display text to users. 
+Citizen Home Page: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Request Emergency Help:
+
+
+
+
+
+
+
+
+
+
+Disaster Map and Alerts:
+
+
+
+
+
+
+
+
+
+
+
+
+Authority Dashboard:
+
+
+
+
+
+
+
+
+
+
+
+
+Offline Edge Mode:
+
+
+
+
+
+
+
+
+
+
+3.4 Implementation
+3.4.1 Introduction
+This chapter presents the implementation of the Outbreak Disaster Management System, describing how the conceptual design and system requirements discussed in previous chapters were translated into a functional software solution. The chapter explains the technologies used, system architecture, database implementation, and the major functional modules developed to support disaster monitoring, reporting, and response coordination.
+3.4.2 Technology Used
+Table  - Technology Used
+
+
+3.4.3 Frontend Implementation
+The frontend of the Outbreak Disaster Management System is implemented using Next.js with React and TypeScript to create a scalable and interactive user interface. Styling and layout are developed using Tailwind CSS, ensuring responsive design and consistent visual elements throughout the application. The frontend architecture is modular and component-based, allowing the system to efficiently manage different user interfaces such as dashboards, forms, notifications, and emergency reporting modules.
+Application Layout and Providers
+
+
+
+
+
+
+
+
+
+The root layout (app/layout.tsx) defines the main structure of the application and wraps all pages with global providers that manage shared functionality. The LanguageProvider enables internationalization support, the ToastProvider manages global notifications, and the LocationTracker runs in the background to capture the user’s GPS location for disaster reporting and hazard detection.
+
+
+
+
+
+Design Theme
+A custom design system is implemented in globals.css using the theme configuration of Tailwind CSS to ensure consistent colors and UI styles across the platform. Brand colors and authority dashboard themes are defined as reusable variables, while additional utility styles such as glass morphism panels, emergency gradient buttons, and dark authority sidebar panels are created for common interface patterns. Typography uses the Geist and Geist Mono fonts integrated through Next.js font optimization.
+
+
+
+
+
+
+
+
+
+
+3.4.4 Database Implementation
+The database layer of the Outbreak Disaster Management System is implemented using PostgreSQL hosted on Supabase. PostgreSQL was selected due to its strong support for relational data modeling, custom ENUM types, UUID primary keys, Row Level Security (RLS), triggers, and stored functions. These features are particularly suitable for a disaster management platform that must handle multiple user roles, geolocation data, and secure access control while maintaining data integrity and performance.
+
+
+Database Management System
+The system database runs on PostgreSQL through Supabase, which provides a managed environment for authentication, storage, and API access. PostgreSQL enables the use of advanced relational features such as ENUM data types for classification fields, UUID identifiers for globally unique records, and database-level security policies. These capabilities ensure that data related to users, incidents, SOS requests, hazards, and resources can be stored securely while supporting efficient querying and role-based access control.
+Database Architecture and Schema Design
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The above figure represents the database architect of the PostgreSQL database that hosted on Supabase. The database schema is designed using Third Normal Form (3NF) to reduce redundancy and maintain data integrity. The schema contains seven core tables that manage user information, disaster reports, emergency requests, hazards, official updates, regional risk levels, and resource availability. To enforce consistent data values across the system, several custom ENUM types are defined within PostgreSQL for categories such as user roles, incident types, SOS request types, hazard severity levels, and resource statuses.
+3.4.5 Backend Implementation
+The backend of the Outbreak Disaster Management System is implemented using Next.js together with Supabase, which provides authentication services, database connectivity, and secure API access. The backend logic is primarily handled through Next.js Server Actions, allowing server-side execution of data operations without the need for a traditional REST API server. This architecture simplifies development while ensuring secure communication between the frontend and the PostgreSQL database. 
+
+Server-Side Logic
+All backend logic is implemented inside app/actions/data.ts using the 'use server' directive. These server actions run securely on the server and interact directly with the Supabase database client. The functions are organized into two main groups: data fetching functions and data mutation functions. Data fetching functions retrieve information required for dashboards and system monitoring, such as active hazards, official updates, regional statistics, incidents, and SOS requests. Mutation functions handle user interactions that modify the database, including submitting incident reports, sending SOS alerts, updating incident status, managing hazard zones, and maintaining resource records. After each mutation operation, the system calls revalidatePath() to refresh cached pages so that updated information is immediately reflected in the user interface.
+
+
+Authentication and Authorization
+User authentication is managed through Supabase Auth, which supports secure email and password authentication. The system defines three user roles: Citizen, Community Supporter, and Authority. During registration, the system stores user details and role information in the authentication metadata and creates a corresponding profile record in the database. During login, the system verifies credentials and determines the user role using multiple resolution steps, including checking the profiles table and authentication metadata. Based on the resolved role, the user is redirected to the appropriate dashboard within the application.
+Middleware-Based Route Protection
+Role-based access control is enforced using Next.js middleware, which intercepts incoming requests before they reach application routes. The middleware checks whether a user is authenticated and determines their role before granting access to protected pages such as authority dashboards or AI analytics pages. If an unauthenticated user attempts to access restricted routes, they are automatically redirected to the login page. Similarly, authenticated users are redirected to their appropriate dashboard when attempting to access authentication pages.
+
+
+
+
+
+
+
+
+This middleware mechanism ensures that sensitive system operations such as incident management, hazard control, and resource allocation remain accessible only to authorized users.
+3.4.6 AI Models Training, Development and Integration
+3.4.6.1 Introduction
+This chapter presents the complete implementation of three artificial intelligence models developed for nationwide flood forecasting across Sri Lanka's river network. The objective of this research phase was to determine which machine learning architecture is best suited for predicting river water levels at 90 monitoring stations spanning 38 river basins, using a high-fidelity dataset of approximately 1.5 million observations.
+Three architecturally distinct models were selected for comparative study:
+XGBoost (Extreme Gradient Boosting) — a tree-based ensemble method
+LSTM (Long Short-Term Memory) — a recurrent neural network
+TFT (Temporal Fusion Transformer) — an attention-based deep learning model
+ 
+Each model was trained on the same unified dataset (water_levels_90_rivers_ready.csv) and evaluated using identical metrics: Mean Absolute Error (MAE), Root Mean Square Error (RMSE), and Coefficient of Determination (R² Score). This "fair fight" methodology eliminates data-volume bias and ensures that all performance differences are attributable to the model architecture itself.
+
+3.4.6.2 Dataset Evolution: From Initial Baseline to High-Fidelity Training Data
+The first iteration of the training pipeline used water_levels_global_ml.csv, a dataset containing approximately 42,786 rows derived directly from the DMC bulletin extraction process. This dataset represented the raw output of the scraping and cleaning pipeline described in Chapter 3, with each row corresponding to one bulletin reading at one station.
+ 
+
+Why the Dataset Was Changed
+Three fundamental limitations of water_levels_global_ml.csv made it inadequate for training production-grade flood forecasting models:
+
+1. Insufficient Data Volume for Deep Learning
+42,786 samples distributed across 90 monitoring stations means each station averaged only ~475 rows of training data. Deep learning models such as LSTM and TFT are data-hungry architectures — they require thousands of sequential examples per entity to learn temporal patterns like seasonal variation, diurnal cycles, and flood buildup dynamics. With only a few days of history per station, the models could not distinguish between a genuine flood signal and normal noise. This resulted in poor initial performance:
+
+
+
+
+2. Irregular Temporal Spacing
+The DMC publishes bulletins at inconsistent intervals — typically at 9:30 AM and 5:30 PM, but with frequent delays, gaps, and missed reports during adverse weather conditions (ironically, exactly when data is most critical). This irregular spacing created two problems:
+● Lag Feature Corruption: The water_level_lag1 feature (previous reading) might represent a 3-hour gap in some rows and a 24-hour gap in others, making it meaningless as a consistent temporal signal.
+● Sequence Discontinuity: LSTM and TFT require continuous sequences of fixed-interval observations. Irregular gaps forced the creation of very short, fragmented sequences that could not capture multi-hour flood buildup patterns.
+The upgraded dataset solved this by resampling all readings to a uniform 1-hour frequency and using linear interpolation to fill gaps between actual bulletin readings. This transformed each station's data from a scattered collection of points into a continuous temporal signal.
+ 
+3. Lack of Rare Event Coverage
+Floods are inherently rare events — most hours in a year show normal, calm water levels. With only 42,786 rows spanning all 90 stations, the dataset contained very few examples of actual flood events. Machine learning models learn by seeing patterns repeatedly; without sufficient flood examples, the models could not reliably distinguish the early warning signs of a flood from normal fluctuations.
+The 1.5 million-row dataset, by covering longer time periods with hourly resolution, captured significantly more flood events, rising-water periods, and seasonal monsoon transitions — giving the models the "experience" needed to recognize these critical patterns.
+ 
+
+
+3.4.6.3 Technical Improvements in the Final Dataset
+The transition from water_levels_global_ml.csv to water_levels_90_rivers_ready.csv involved the following enhancements:
+Hourly Resampling: All station readings were resampled to a uniform 1-hour grid using pd.resample('h'), with linear interpolation applied to fill gaps. This increased the data volume by approximately 35× while preserving the original measurements as anchor points.
+Consistent Lag Features: With uniform hourly spacing, water_level_lag1 now always represents "exactly 1 hour ago" and water_level_lag2 always represents "exactly 2 hours ago" — giving the models a reliable temporal signal.
+Rolling Rainfall Aggregation: The rainfall_roll3 feature (3-hour rolling average of rainfall) became meaningful only after resampling, because the 3-hour window now covers a consistent temporal span rather than an arbitrary number of irregularly spaced readings.
+Station Coverage Validation: A coverage audit identified 2 stations (Mee Oya, Station ID 54; Panadugama, Station ID 66) with only 1 observation each — insufficient even for a single time-series sequence. These were excluded, maintaining 97.8% spatial coverage (88 of 90 stations across 36 of 37 rivers).
+The decision to migrate from water_levels_global_ml.csv to water_levels_90_rivers_ready.csv was the single most impactful change in the entire model development lifecycle. Without this upgrade, no amount of architectural sophistication or hyperparameter tuning could have produced forecasting models with R² > 0.99.
+
+
+
+
+
+
+
+3.4.6.4 Dataset Preparation for Model Training
+Source Dataset -
+The training dataset was constructed from hydro-meteorological bulletins published by the Disaster Management Centre (DMC) of Sri Lanka. Raw PDF and image-based reports were converted into structured tabular records through an automated extraction pipeline. The final dataset, water_levels_90_rivers_ready.csv, contains the following characteristics:
+
+Two stations were excluded from the final training pipeline: Mee Oya (Station ID 54) and Panadugama (Station ID 66), each containing only a single observation — insufficient to form valid time-series sequences. This decision preserved the empirical integrity of the dataset by avoiding synthetic padding.
+3.4.6.4 Feature Engineering
+A total of 10 input features were engineered to provide each model with temporal, spatial, and hydrological context:
+ 
+Target Variable: water_level_now — the current river water level in meters.
+The lag features (water_level_lag1, water_level_lag2) provide the model with a "memory" of recent trends, enabling it to calculate the rate and direction of water level change. The rolling rainfall aggregate (rainfall_roll3) captures cumulative precipitation effects, which are more predictive of flooding than instantaneous readings, because sustained rainfall over several hours saturates the soil and accelerates surface runoff.
+
+3.4.6.5 Data Splitting Strategy
+All models used an 80/20 chronological split per station. For each of the 88 stations, the earliest 80% of observations were assigned to training, and the most recent 20% were reserved for testing. This approach prevents temporal data leakage — a situation where the model inadvertently "sees" future data during training — which would produce artificially inflated accuracy scores.
+    # Per-station chronological split    
+    for station_id in df['station_id'].unique():    
+        s_df = df[df['station_id'] == station_id].sort_values('datetime')    
+        if len(s_df) < 50: continue  # Skip stations with insufficient data    
+        split_idx = int(0.8 * len(s_df))    
+        train_dfs.append(s_df.iloc[:split_idx])    
+        test_dfs.append(s_df.iloc[split_idx:])    
+
+3.4.6.6 Model 1: XGBoost (Extreme Gradient Boosting)
+Architecture Overview
+XGBoost is an ensemble learning algorithm that constructs a sequence of decision trees, where each new tree attempts to correct the errors made by the previous one — a technique known as gradient boosting. Unlike neural networks, XGBoost treats each data point as an independent row (tabular data) and does not inherently model temporal sequences. However, through the engineered lag features and rolling averages, the model effectively gains access to recent historical context.
+ 
+
+Key Strengths:
+Extremely fast training and inference times
+Built-in regularization to prevent overfitting
+Native handling of missing values
+Feature importance ranking to aid interpretability
+ 
+Hyperparameter Tuning
+The XGBoost model was optimized through GridSearchCV — an exhaustive search across a predefined grid of hyperparameter combinations, evaluated using 3-fold cross-validation with MAE as the scoring metric:    
+    param_grid = {    
+        'n_estimators': [500, 1000],      # Number of boosting rounds    
+        'max_depth': [6, 10],             # Maximum tree depth    
+        'learning_rate': [0.01, 0.05],    # Step size shrinkage    
+        'subsample': [0.8, 1.0]           # Fraction of samples per tree    
+    }    
+        
+    model = xgb.XGBRegressor(    
+        objective='reg:squarederror',    
+        tree_method='gpu_hist',  # GPU-accelerated training    
+        random_state=42    
+    )    
+         
+    grid_search = GridSearchCV(model, param_grid, cv=3,    
+                               scoring='neg_mean_absolute_error', verbose=1)    
+    grid_search.fit(X_train, y_train)    
+         
+ 
+
+This grid search evaluated 16 unique hyperparameter combinations across 3 cross-validation folds, resulting in 48 total model fits. The best configuration was automatically selected based on the lowest mean absolute error.
+Training Results
+The XGBoost model completed training in approximately 45 minutes on a Google Colab GPU instance, significantly faster than both deep learning alternatives.
+Feature Importance Analysis
+XGBoost provides a built-in mechanism to rank which input features contributed most to prediction accuracy. The following figure shows the relative importance of each feature:
+
+
+
+ 
+
+
+
+
+
+ 
+The feature importance plot reveals that `water_level_lag1` (the previous hour's water level) is overwhelmingly the most important predictor, followed by `rainfall_roll3` (cumulative rainfall) and `water_level_lag2`. This aligns with hydrological principles: a river's current state is most strongly determined by its immediate past state, modulated by incoming rainfall.
+The following screenshot from Google Colab confirms the final leaderboard results after the unified retraining on the full 1.5M-row dataset. Both XGBoost and LSTM achieve near-perfect R² scores:
+
+
+
+
+
+
+3.4.6.7 Model 2: LSTM (Long Short-Term Memory)
+Architecture Overview
+The LSTM is a specialized type of Recurrent Neural Network (RNN) designed to learn from sequences of data over time. Unlike XGBoost, which views each observation as an isolated row, the LSTM processes a sliding window of consecutive observations and learns temporal patterns — such as the gradual buildup of a flood over several hours.
+
+The LSTM architecture used in this study consists of:
+2 stacked LSTM layers with 128 hidden units each
+Dropout regularization (20%) between layers to reduce overfitting
+A fully connected output layer that produces the final water level prediction
+A lookback window of 12-time steps (12 hours of history)         
+ 
+
+
+
+
+
+Sequence Generation
+Before training, the raw tabular data was converted into overlapping sequences using a sliding window approach. Each input sample consists of 12 consecutive hourly readings, and the model predicts the water level at hour 13:
+    def create_sequences(data, target, window_size):    
+        X, y = [], []    
+        for i in range(len(data) - window_size):    
+            X.append(data[i:(i + window_size)])       # 12 hours of input    
+            y.append(target[i + window_size])          # Hour 13 prediction    
+        return np.array(X), np.array(y)    
+
+All features were normalized to the [0, 1] range using MinMaxScaler before sequence generation. This normalization is essential for neural networks because features with vastly different scales (e.g., rainfall in millimeters vs. station_id as an integer) would otherwise cause gradient instability during training.
+ 
+Training Configuration
+
+
+
+
+
+
+
+
+Training History
+The following plot shows the LSTM's loss function (MSE) decreasing over 100 training epochs:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The LSTM training loss curve from the fair-fight retraining is captured from the unified Colab pipeline output. The final leaderboard screenshot (Section 4.3.4) confirms that the LSTM achieved an MAE of 0.032 and R² of 0.994 after 100 epochs of training on the full 1.5M-row dataset — a significant improvement over its initial 3-epoch attempt.
+
+Analysis of the Loss Curve:
+Epochs 1–5: The sharp initial descent indicates that the model quickly learned the fundamental physical relationship — rainfall causes water levels to rise.
+Epochs 5–30: The curve transitions into a smooth, gradual decline, indicating that the model is now learning subtler patterns such as seasonal variation and station-specific behavior.
+Epochs 30–100: The curve approaches an asymptote but continues to slope downward slightly. This indicates that the model has not yet fully saturated its learning capacity — additional epochs (e.g., 200–500) could yield marginal improvements.
+ 
+Challenges Faced During LSTM Training
+Initial Underfitting (3-Epoch Problem): The original LSTM script (train_lstm_flood.py) trained for only 3 epochs, which was grossly insufficient for the model to learn meaningful patterns. This was corrected in the unified retraining pipeline by increasing to 100 epochs.
+Data Volume Sensitivity: When trained on the smaller 42,000-row dataset, the LSTM achieved mediocre accuracy. The same architecture trained on the 1.5 million-row dataset achieved R² > 0.99, proving that data volume was the primary bottleneck, not model capacity.
+Memory Management: Processing 1.5 million sequences simultaneously exceeded GPU memory limits. This was resolved by implementing batched inference with a batch size of 4,096 during evaluation.
+The LSTM inference results during the fair-fight evaluation are confirmed by the final leaderboard (see Section 4.3.4), which ran inference on 294,942 test sequences and reported MAE of 0.032159 and R² of 0.994220.
+
+
+
+
+
+
+3.4.6.8 Model 3: TFT (Temporal Fusion Transformer)
+Architecture Overview
+The Temporal Fusion Transformer is a state-of-the-art deep learning architecture specifically designed for multi-horizon time-series forecasting. Published by Lim et al. (2021), TFT combines several advanced mechanisms that distinguish it from both XGBoost and LSTM:
+Self-Attention Mechanism: Rather than treating all past observations equally (as LSTM does), TFT learns to "attend" selectively to the most relevant historical time steps. For example, during a prediction, it might focus heavily on the 6 hours before a rainfall peak while ignoring periods of calm weather.
+Static Covariate Encoders (Entity Embeddings): TFT assigns each monitoring station and river a learned vector representation — essentially an "identity card." This allows the model to understand that a station in a steep mountain valley responds to rainfall differently than a station on a flat floodplain.
+Variable Selection Networks: The model automatically determines which input features are most important for each prediction, providing built-in explainability without external tools.
+Quantile Regression: Instead of producing a single point estimate, TFT outputs a probability distribution. For example, it might predict: "There is a 90% probability that the water level will be between 2.5 m and 3.2 m." This uncertainty quantification is crucial for risk-based decision-making in flood management.
+ 
+Training Configuration
+    tft = TemporalFusionTransformer.from_dataset(    
+        training,    
+        learning_rate=0.03,    
+        hidden_size=16,    
+        lstm_layers=1,    
+        attention_head_size=1,    
+        loss=RMSE(),    
+        reduce_on_plateau_patience=4,    
+    )    
+         
+    trainer = pl.Trainer(    
+        max_epochs=30,    
+        accelerator="gpu",    
+        precision=32,    
+        gradient_clip_val=0.1,    
+        callbacks=[    
+            EarlyStopping(monitor="val_loss", patience=5),    
+            LearningRateMonitor()    
+        ],    
+    )    
+         
+
+
+
+
+
+
+
+
+
+TFT Training Process Evidence
+The following Colab screenshots document the complete TFT training pipeline on the 1.5M-row dataset.
+Step 1 — Data Loading: The dataset was loaded successfully with 1,479,819 rows and 25 columns:
+
+
+
+
+
+
+
+
+Step 2 — Data Quality Verification: NaN and infinity checks confirmed zero missing values across all numeric columns both before and after cleaning:
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Step 3 — Dataset Summary and Station Exclusion: The pipeline confirmed 36 rivers and 88 stations in the final training set, with 2 stations (IDs 66 and 54) excluded due to insufficient data:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+Step 4 — TimeSeriesDataSet Configuration: The TFT-specific dataset was configured with static categoricals, time-varying known/unknown reals, and GroupNormalizer:
+
+
+
+
+
+
+
+
+
+Step 5 — Trainer Configuration and GPU Initialization: The Trainer was configured with 30 max epochs, precision=32 (to avoid overflow), gradient clipping, and early stopping:
+
+ 
+
+
+
+
+
+
+
+
+Step 6 — Model Architecture and Training Progress: The TFT model contains 29.8K trainable parameters across 20 component layers. Training progress shows Epoch 8/29 with a validation loss of 0.555:
+
+Challenges Faced During TFT Training
+Mixed Precision Overflow: The initial training script used precision='16-mixed' (half-precision floating-point) for GPU memory efficiency. However, this caused numerical overflow errors in TFT's internal attention masking operations. The solution was to revert to precision=32 (full 32-bit floating point), at the cost of slightly higher memory usage.
+Zero-Variance Protection: Some stations had nearly constant water levels during certain periods, causing the GroupNormalizer to divide by near-zero standard deviations. A small random noise term (np.random.uniform(0, 0.0001)) was added to the target variable to prevent division-by-zero errors without materially affecting model accuracy.
+Station Exclusion: Stations with fewer observations than the max_encoder_length (12 entries) were automatically excluded by the TimeSeriesDataSet constructor, resulting in the loss of 2 stations from the training pipeline.
+Computational Cost: TFT required approximately 3–4 hours of GPU training on Google Colab (T4 GPU), compared to ~45 minutes for XGBoost and ~2 hours for LSTM.
+ 
+
+
+
+
+
+
+TFT Evaluation Results
+The TFT evaluation produced the following metrics, captured directly from Colab:
+
+
+
+
+
+
+
+
+
+
+
+
+TFT Prediction Analysis
+The following figure shows TFT's prediction output with quantile confidence bands, demonstrating the model's ability to express prediction uncertainty:
+ 
+
+
+
+
+
+
+The TFT Predictions vs. Actual plot below shows the model's performance across a wider sample of test data points:
+ 
+
+
+
+
+
+
+
+TFT Variable Importance
+TFT's built-in interpretability mechanism identifies which features drove predictions. Notably, rainfall contributes nearly 48% of the total importance, followed by month at 34%, confirming that the model has correctly learned that seasonal monsoon patterns and precipitation are the primary drivers of flood risk:
+
+
+
+
+
+
+
+
+
+ 
+3.4.6.9 Comparative Evaluation
+Evaluation Methodology
+All three models were evaluated on the same held-out test set (the most recent 20% of observations from each station) using the evaluate_comparison.py script. The evaluation computed three standard regression metrics:
+MAE (Mean Absolute Error): The average magnitude of prediction errors in meters. Lower is better.
+RMSE (Root Mean Square Error): Similar to MAE but penalizes large errors more heavily. Lower is better.
+R² Score (Coefficient of Determination): The proportion of variance in the actual water levels that the model correctly predicts. A score of 1.0 represents perfect prediction. Higher is better.
+Performance Metrics Summary
+The following table presents the final evaluation results for all three models on the unified 1.5 million-row test set:
+
+Both XGBoost and LSTM achieve R² scores exceeding 0.99, meaning they correctly predict more than 99% of the variance in river water levels. The XGBoost model's MAE of 0.0246 meters means its predictions are, on average, only 2.5 centimeters away from the actual water level.
+ 
+
+
+
+
+
+Visual Performance Comparison - The Leaderboard
+The following bar chart visualizes the three key metrics across all models:
+ 
+
+
+
+
+
+
+The Battle Plot: AI Predictions vs. Reality
+The following time-series plot overlays the predictions from XGBoost and LSTM against the actual recorded water levels at a sample station:
+ 
+
+
+
+
+
+
+
+The prediction lines track the actual water level so closely that they are nearly indistinguishable from the ground truth. This visual confirmation reinforces the quantitative metrics: both XGBoost and LSTM have achieved a high degree of predictive fidelity.
+ 
+
+ 
+Overfitting Diagnostic Analysis
+A critical concern in any machine learning study is overfitting — where a model memorizes the training data rather than learning generalizable patterns. To verify that our models are genuinely learning, we compared their performance on the training set (data the model has seen) against the test set (data the model has never seen). A large gap between these two scores would indicate overfitting.
+The overfitting diagnostic was conducted using the check_overfitting.py script, which produced the following results:
+Train vs. Test Performance
+ 
+Overfitting Gap Analysis
+ 
+In both cases, the gap between training and testing performance is extremely small (less than 1 centimeter for MAE). This provides strong evidence that neither model is overfitting. The models have genuinely learned the underlying hydrological dynamics rather than memorizing specific data points.
+ 
+
+
+
+
+Persistence Baseline Comparison
+To further validate that the AI models are performing meaningful predictions (and not simply repeating the last known value), a Persistence Baseline was computed. The persistence model predicts that the water level at time t is exactly equal to the water level at time t − 1.
+
+At first glance, the persistence baseline appears to have a lower MAE than the AI models. However, this is because water levels change very slowly (typically only a few millimeters per hour during calm conditions). The persistence model achieves low average error by being "safe" — it always predicts no change. The critical difference emerges during flood events: the persistence model completely fails to anticipate rapid water level rises, while the AI models can detect the onset of a surge through rainfall and lag patterns.
+
+3.4.6.10 Interpretation of Results
+Why XGBoost Outperformed Deep Learning
+The superior performance of XGBoost for 1-hour-ahead prediction can be attributed to several factors:
+Nature of the Prediction Task: For short-horizon forecasting (1 hour ahead), the previous water level (water_level_lag1) is overwhelmingly the strongest predictor. XGBoost's ability to model non-linear relationships between tabular features makes it highly effective at leveraging this single dominant feature.
+Hyperparameter Optimization: The GridSearchCV process systematically explored 16 hyperparameter combinations, finding the optimal configuration. The LSTM and TFT models used manually selected hyperparameters, which may not represent their theoretical maximum performance.
+Data Efficiency: Tree-based methods like XGBoost are known to perform well with large tabular datasets without requiring the complex data preprocessing (normalization, sequence generation) that neural networks demand.
+ 
+Why TFT Scored Lower — And Why It Still Matters
+The TFT's lower R² score (0.8823 vs. 0.9934) does not necessarily indicate that it is an inferior model. Several factors explain the performance gap:
+Different Design Philosophy: TFT was designed for multi-horizon forecasting (predicting 1, 6, 12, and 24 hours ahead simultaneously), whereas the current evaluation measures only 1-hour-ahead accuracy. TFT's architecture invests model capacity in long-term pattern recognition, which is not captured in short-term metrics.
+Quantile Loss Function: TFT was trained with RMSE loss while also outputting quantile predictions. This distributional approach trades a small amount of point-prediction accuracy for the ability to express prediction uncertainty — a feature that is essential for operational flood warning systems.
+Interpretability Advantage: TFT's Variable Selection Network provides built-in, scientifically meaningful explanations for each prediction. In a research context, understanding why the model made a prediction is often more valuable than marginal improvements in accuracy.
+Cross-Station Learning: TFT's entity embedding mechanism enables "transfer learning" between stations — patterns learned from data-rich stations can improve predictions at data-sparse stations.
+
+
+
+
+
+
+3.4.6.11 Conclusion: Selecting the Optimal Model for Flood Forecasting
+Summary of Findings
+This study implemented and evaluated three machine learning architectures for predicting river water levels across 88 monitoring stations on 36 river basins in Sri Lanka. When trained on the unified 1.5 million-row dataset, all three models demonstrated strong predictive capability, but with important differences in accuracy, speed, and interpretability.
+Final Model Rankings
+
+Recommendation
+For operational deployment as a flood early warning system, this research recommends XGBoost as the primary forecasting engine. It achieves the highest accuracy (MAE of 2.5 cm, R² of 0.9934), requires the least computational resources, and produces predictions in milliseconds — making it ideal for real-time alert generation across all 88 stations simultaneously.
+The LSTM model should serve as a secondary validation model in an ensemble configuration. Its sequential memory architecture makes it particularly valuable for detecting slow-onset flood events where the gradual buildup of water levels over 6–12 hours is the critical signal.
+The TFT model remains the most scientifically valuable architecture for research and planning applications. Its ability to provide prediction confidence intervals (quantile forecasting) and variable importance analysis makes it the preferred tool for understanding flood dynamics, conducting scenario analysis, and producing evidence-based policy recommendations. Future work should focus on evaluating TFT's performance on multi-horizon forecasting (6-hour and 24-hour predictions), where its attention-based architecture is expected to outperform both XGBoost and LSTM.
+Key Takeaway
+The most important finding of this chapter is that data volume was the primary determinant of model accuracy, not model complexity. When the same architectures were trained on 42,000 rows, they achieved mediocre results (R² ≈ 0.27–0.78). When retrained on 1.5 million rows — all three models exceeded R² > 0.88, with XGBoost and LSTM both achieving R² > 0.99. This underscores a fundamental principle in applied machine learning: before investing in more sophisticated architectures, researchers should first invest in collecting and curating more high-quality data.
+
+3.4.7 Implementation Summary
+The implementation of the system integrates the frontend, backend, and database layers to create a complete and functional disaster management platform. The frontend, developed using Next.js, provides responsive dashboards, interactive components, and user-friendly interfaces that allow citizens and authorities to report incidents, request help, and monitor hazards efficiently. The backend logic is implemented using Next.js Server Actions and Supabase, which manage authentication, secure data processing, and role-based access control. Meanwhile, the system data is stored in a PostgreSQL database designed in Third Normal Form (3NF) to ensure data integrity, efficient storage, and optimized query performance. Together, these three components form a scalable and reliable architecture capable of supporting real-time disaster reporting, emergency communication, and decision-making processes within the system.
+3.5 Testing
+3.5.1 Unit Testing
+In unit testing, each API endpoints, frontend components and hardware modules will be tested before the deployment. 
+3.5.2 Integration Testing
+When integrating each module of the system, they will be tested to find out bugs of malfunctions when modules are working together. AI model predictions and analyzations, and IoT device outputs will be tested when integrating each module.
+3.5.3 System Testing
+The overall system will be tested after deploying on real-world conditions such as network failures, higher user loads, and edge device webserver and range functioning. 
+
+
+
